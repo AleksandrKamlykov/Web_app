@@ -1,19 +1,23 @@
-@page
-@model Web_app.Views.Home.Details
+@model Web_app.Models.Product
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Product Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid" src="@Model.ImageUrl" alt="@Model.Name">
+        </div>
+        <div class="col-md-6">
+            <h1>@Model.Name</h1>
+            <p>@Model.Description</p>
+            <h3>@Model.Price.ToString("C")</h3>
+            <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
 </div>
-</body>
-</html>
